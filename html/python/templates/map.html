@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sustainable Locations Map</title>
+    <style>
+      /* Set the size of the map container */
+      #map {
+        height: 60vh; /* 60% of the viewport height for the map */
+        width: 100%; /* Fullscreen width */
+      }
+      #locations {
+        font-family: Arial, sans-serif;
+        margin-top: 20px;
+      }
+      .store-list {
+        margin-bottom: 20px;
+      }
+      .store-item {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sustainable Locations in Atlanta</h1>
+
+    <div class="store-list">
+      <h2>Thrift Stores:</h2>
+      <div class="store-item">
+        <strong>Goodwill Atlanta</strong><br />
+        468 Moreland Ave SE, Atlanta, GA 30316
+      </div>
+      <div class="store-item">
+        <strong>Value Village</strong><br />
+        1165 S Ponce De Leon Ave, Atlanta, GA 30306
+      </div>
+      <div class="store-item">
+        <strong>Salvation Army</strong><br />
+        3405 Main St, College Park, GA 30337
+      </div>
+    </div>
+
+    <div class="store-list">
+      <h2>Vegan Shops:</h2>
+      <div class="store-item">
+        <strong>Vegan Fine Foods</strong><br />
+        995 Ponce De Leon Ave NE, Atlanta, GA 30306
+      </div>
+      <div class="store-item">
+        <strong>Herban Fix</strong><br />
+        565-A, 5th St NW, Atlanta, GA 30308
+      </div>
+      <div class="store-item">
+        <strong>Plant Based Pizzeria</strong><br />
+        2825 N Druid Hills Rd NE, Atlanta, GA 30329
+      </div>
+    </div>
+
+    <!-- Google Map -->
+    <div id="map"></div>
+
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // Set up the map location (centered on Atlanta)
+        const atlanta = { lat: 33.7490, lng: -84.3880 };
+
+        // Create the map
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12, // Zoom level
+          center: atlanta,
+        });
+
+        // Thrift store locations
+        const thriftStores = [
+          { lat: 33.7495, lng: -84.3622, name: 'Goodwill Atlanta' },
+          { lat: 33.7602, lng: -84.3586, name: 'Value Village' },
+          { lat: 33.6544, lng: -84.4737, name: 'Salvation Army' }
+        ];
+
+        // Vegan shop locations
+        const veganShops = [
+          { lat: 33.7771, lng: -84.3500, name: 'Vegan Fine Foods' },
+          { lat: 33.7733, lng: -84.3880, name: 'Herban Fix' },
+          { lat: 33.8532, lng: -84.3232, name: 'Plant Based Pizzeria' }
+        ];
+
+        // Add markers for thrift stores
+        thriftStores.forEach(store => {
+          new google.maps.Marker({
+            position: { lat: store.lat, lng: store.lng },
+            map: map,
+            title: store.name,
+          });
+        });
+
+        // Add markers for vegan shops
+        veganShops.forEach(store => {
+          new google.maps.Marker({
+            position: { lat: store.lat, lng: store.lng },
+            map: map,
+            title: store.name,
+          });
+        });
+      }
+    </script>
+
+    <!-- Load the Google Maps JavaScript API -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhk3BlpicrOsb8vYeVwXxyQpNkkygdjBQ&callback=initMap&callback=initMap"
+    ></script>
+  </body>
+</html>

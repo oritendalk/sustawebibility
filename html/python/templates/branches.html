@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainwebility Branches</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #e8f5e9;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #4a9c5d;
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .feed-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .message {
+            text-align: center;
+            color: #4a9c5d;
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .post {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .author {
+            color: #2c7744;
+            font-weight: bold;
+        }
+
+        .date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .content {
+            color: #333;
+            font-size: 1.1em;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+
+        .likes {
+            color: #8b4513;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .likes::before {
+            content: "♥";
+            color: #8b4513;
+        }
+
+        .hashtag {
+            color: #4a9c5d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Branches</h1>
+    <div class="message">Check back each day to see new branches!</div>
+    <div class="feed-container">
+        {% for post in posts %}
+        <div class="post">
+            <div class="post-header">
+                <span class="author">{{ post.author }}</span>
+                <span class="date">{{ post.date }}</span>
+            </div>
+            <div class="content">
+                {{ post.content | replace("#", "<span class='hashtag'>#") | safe }}
+            </div>
+            <div class="likes">
+                {{ post.likes }} likes
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

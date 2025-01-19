@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes for a Sustainable Future</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c7744;
+        }
+
+        select, button, input {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .section {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function showSubOptions() {
+            const mainOption = document.getElementById("main_option").value;
+            const allSections = document.querySelectorAll(".section");
+            allSections.forEach(section => section.classList.add("hidden"));
+
+            if (mainOption === "Self Care") {
+                document.getElementById("self_care_options").classList.remove("hidden");
+            } else if (mainOption === "Reduce") {
+                document.getElementById("reduce_options").classList.remove("hidden");
+            } else if (mainOption === "Reuse") {
+                document.getElementById("reuse_options").classList.remove("hidden");
+            } else if (mainOption === "Recycle") {
+                document.getElementById("recycle_options").classList.remove("hidden");
+            }
+        }
+
+        function showDetails(optionGroup, selectedOption) {
+            const details = document.querySelectorAll(`.${optionGroup}-details`);
+            details.forEach(detail => detail.classList.add("hidden"));
+            const selectedDetail = document.getElementById(`${optionGroup}-${selectedOption}`);
+            if (selectedDetail) {
+                selectedDetail.classList.remove("hidden");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Recipes for a Sustainable Future!</h1>
+    <label for="main_option">What are you looking to find?</label>
+    <select id="main_option" onchange="showSubOptions()">
+        <option value="">Select an option</option>
+        <option value="Self Care">Self Care</option>
+        <option value="Reduce">Reduce</option>
+        <option value="Reuse">Reuse</option>
+        <option value="Recycle">Recycle</option>
+    </select>
+
+    <!-- Self Care Options -->
+    <div id="self_care_options" class="section hidden">
+        <h2>Self Care</h2>
+        <label for="self_care_select">Choose a category:</label>
+        <select id="self_care_select" onchange="showDetails('self_care', this.value)">
+            <option value="">Select</option>
+            <option value="Hair">Hair</option>
+            <option value="Soap">Soap</option>
+            <option value="Skin">Skin</option>
+            <option value="Makeup">Makeup</option>
+        </select>
+
+        <div id="self_care-Hair" class="self_care-details hidden">
+            <h3>DIY Hair Masks</h3>
+            <p>Combine 2 tablespoons of coconut oil with 1 tablespoon of honey for a natural deep conditioner. Apply to damp hair and leave for 30 minutes before rinsing.</p>
+        </div>
+        <div id="self_care-Soap" class="self_care-details hidden">
+            <h3>Homemade Soap Recipe</h3>
+            <p>Mix olive oil, coconut oil, and lye to create your own eco-friendly soap. Add essential oils like lavender or citrus for fragrance.</p>
+        </div>
+        <div id="self_care-Skin" class="self_care-details hidden">
+            <h3>Sustainable Skincare</h3>
+            <p>Try making your own exfoliating scrub with sugar, honey, and a splash of lemon juice for glowing skin.</p>
+        </div>
+        <div id="self_care-Makeup" class="self_care-details hidden">
+            <h3>DIY Makeup Tips</h3>
+            <p>Create your own natural lip balm with beeswax, coconut oil, and a hint of beetroot powder for color.</p>
+        </div>
+    </div>
+
+    <!-- Reduce Options -->
+    <div id="reduce_options" class="section hidden">
+        <h2>Reduce</h2>
+        <ul>
+            <li>Use a reusable water bottle instead of single-use plastics.</li>
+            <li>Opt for digital receipts instead of paper ones.</li>
+            <li>Plan meals to minimize food waste at home.</li>
+        </ul>
+    </div>
+
+    <!-- Reuse Options -->
+    <div id="reuse_options" class="section hidden">
+        <h2>Reuse</h2>
+        <label for="reuse_select">Choose a category:</label>
+        <select id="reuse_select" onchange="showDetails('reuse', this.value)">
+            <option value="">Select</option>
+            <option value="Thrift">Thrift</option>
+        </select>
+
+        <div id="reuse-Thrift" class="reuse-details hidden">
+            <h3>Thrifting Tips</h3>
+            <p>Check out local thrift stores for second-hand clothing, furniture, and other items. Repurpose old items to give them new life! If you want to know where some are, check out our maps section!</p>
+        </div>
+    </div>
+
+    <!-- Recycle Options -->
+    <div id="recycle_options" class="section hidden">
+        <h2>Recycle</h2>
+        <label for="recycle_select">Choose a category:</label>
+        <select id="recycle_select" onchange="showDetails('recycle', this.value)">
+            <option value="">Select</option>
+            <option value="Cans">Cans/Bottles</option>
+            <option value="Paper">Paper/Cardboard</option>
+            <option value="Plastic">Plastic</option>
+            <option value="Metal">Metal</option>
+            <option value="Batteries">Batteries</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <div id="recycle-Cans" class="recycle-details hidden">
+            <h3>Recycling Cans and Bottles</h3>
+            <p>Clean and dry aluminum cans and plastic bottles before recycling. Check your local recycling rules for sorting.</p>
+        </div>
+        <div id="recycle-Paper" class="recycle-details hidden">
+            <h3>Recycling Paper and Cardboard</h3>
+            <p>Break down cardboard boxes and avoid recycling wet or greasy paper, like pizza boxes.</p>
+        </div>
+        <div id="recycle-Plastic" class="recycle-details hidden">
+            <h3>Recycling Plastics</h3>
+            <p>Recycle plastics labeled with numbers 1 and 2, and reuse others where possible.</p>
+        </div>
+        <div id="recycle-Metal" class="recycle-details hidden">
+            <h3>Recycling Metals</h3>
+            <p>Scrap metal can often be taken to specialized recycling centers for cash!</p>
+        </div>
+        <div id="recycle-Batteries" class="recycle-details hidden">
+            <h3>Recycling Batteries</h3>
+            <p>Drop off used batteries at collection sites or recycling facilities to avoid environmental harm.</p>
+        </div>
+        <div id="recycle-Other" class="recycle-details hidden">
+            <h3>Recycling Other Items</h3>
+            <p>Check your local waste management services for information on recycling unusual items like electronics or glass.</p>
+        </div>
+    </div>
+</body>
+</html>
